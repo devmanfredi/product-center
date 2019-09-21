@@ -1,5 +1,6 @@
-package com.productcenter.ProductCenter.service.product;
+package com.productcenter.ProductCenter.controller.product;
 
+import com.productcenter.ProductCenter.controller.ProductController;
 import com.productcenter.ProductCenter.entity.Product;
 import com.productcenter.ProductCenter.entity.Stock;
 import com.productcenter.ProductCenter.repository.ProductRepository;
@@ -18,36 +19,33 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductTest {
+public class ProductControllerTest {
 
     @Autowired
+    ProductController productController;
+
+    @MockBean
     private ProductService productService;
 
     @MockBean
     private ProductRepository productRepository;
 
     @Test
-    public void dadoUmProdutoQuandoForCompletoEntaoSalvar() {
-        Product produto = buildProduto(null);
-        Mockito.when(productRepository.save(produto)).thenReturn(buildProduto(10L));
-
-        Product result = productService.save(produto);
-
+    public void deveSalvarProduto() {
+        Product product = buildProduto(null);
+        Mockito.when(productController.save(product)).thenReturn(buildProduto(10L));
+        Product result = productController.save(product);
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
-
     }
 
     @Test
-    public void dadoIdRetornarUmProduto() {
+    public void deveRetornarProdutoPeloId() {
         Product product = buildProduto(null);
-        Mockito.when(productRepository.findById(product.getId())).thenReturn(Optional.of(buildProduto(10L)));
-
-        Product result = productService.findById(product.getId());
-
+        Mockito.when(productController.findById(product.getId())).thenReturn(buildProduto(10L));
+        Product result = productController.findById(product.getId());
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
     }
 
@@ -57,22 +55,8 @@ public class ProductTest {
         for (int i = 0; i < 3; i++) {
             products.add(buildProduto(null));
         }
-
-        Mockito.when(productRepository.findAll()).thenReturn(products);
-
+        Mockito.when(productController.findAll()).thenReturn(products);
     }
-
-    //@Test
-    //public void deveFiltrarListaPeloId(){
-    //    List<Product> products = new ArrayList<>();
-    //    for (int i = 0; i < 3; i++) {
-    //        products.add(buildProduto(null));
-    //    }
-    //
-    //
-    //
-//
-    //}
 
     private Product buildProduto(Long id) {
         return Product.builder()
@@ -83,11 +67,4 @@ public class ProductTest {
                 .createAt(LocalDateTime.now())
                 .build();
     }
-
-    //private List<Product> buildList(List<Product> products){
-    //    for (int i = 0; i < 3; i++) {
-    //        products.add(buildProduto(null));
-    //    }
-    //    return products;
-    //}
 }

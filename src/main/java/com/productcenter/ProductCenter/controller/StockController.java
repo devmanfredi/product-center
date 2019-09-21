@@ -3,10 +3,9 @@ package com.productcenter.ProductCenter.controller;
 import com.productcenter.ProductCenter.entity.Stock;
 import com.productcenter.ProductCenter.service.impl.StockService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -18,6 +17,16 @@ public class StockController {
     @PostMapping
     public Stock save(@RequestBody Stock stock) {
         return stockService.save(stock);
+    }
+
+    @GetMapping("/{stockId}")
+    public Stock findById(@PathVariable Long stockId) {
+        return stockService.findById(stockId);
+    }
+
+    @GetMapping
+    public List<Stock> findAll() {
+        return stockService.findAll();
     }
 
 

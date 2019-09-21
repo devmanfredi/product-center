@@ -1,5 +1,6 @@
-package com.productcenter.ProductCenter.service.stock;
+package com.productcenter.ProductCenter.controller.stock;
 
+import com.productcenter.ProductCenter.controller.StockController;
 import com.productcenter.ProductCenter.entity.Product;
 import com.productcenter.ProductCenter.entity.Stock;
 import com.productcenter.ProductCenter.repository.StockRepository;
@@ -17,36 +18,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StockTest {
+public class StockControllerTest {
 
     @Autowired
+    StockController stockController;
+
+    @MockBean
     private StockService stockService;
 
     @MockBean
     private StockRepository stockRepository;
 
     @Test
-    public void dadoUmStockQuandoForCompletoEntaoSalvar() {
-        Stock stock = buildStock(null);
-        Mockito.when(stockRepository.save(stock)).thenReturn(buildStock(10L));
-
-        Stock result = stockService.save(stock);
-
+    public void deveSalvarStock() {
+        Stock stock = stockBuild(null);
+        Mockito.when(stockController.save(stock)).thenReturn(stockBuild(10L));
+        Stock result = stockController.save(stock);
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
-
     }
 
     @Test
-    public void dadoIdRetornarUmStock() {
-        Stock stock = buildStock(null);
-        Mockito.when(stockRepository.findById(stock.getId())).thenReturn(Optional.of(buildStock(10L)));
-
-        Stock result = stockService.findById(stock.getId());
-
+    public void deveRetornarStockPeloId() {
+        Stock stock = stockBuild(null);
+        Mockito.when(stockController.findById(stock.getId())).thenReturn(stockBuild(10L));
+        Stock result = stockController.findById(stock.getId());
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
     }
 
@@ -54,18 +52,16 @@ public class StockTest {
     public void deveRetornarUmaLista() {
         List<Stock> stocks = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            stocks.add(buildStock(null));
+            stocks.add(stockBuild(null));
         }
-
-        Mockito.when(stockRepository.findAll()).thenReturn(stocks);
-
+        Mockito.when(stockController.findAll()).thenReturn(stocks);
     }
 
-    private Stock buildStock(Long id) {
+    private Stock stockBuild(Long id) {
         return Stock.builder()
                 .id(id)
-                .product(Product.builder().name("product").build())
-                .quantity(100)
+                .product(Product.builder().name("Smart").build())
+                .quantity(20)
                 .createdAt(LocalDateTime.now())
                 .build();
     }
