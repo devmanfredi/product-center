@@ -36,5 +36,5 @@ public class Product {
     private LocalDateTime updateAt;
 
     @OneToOne
-    private Product product;
+    private Stock stock;
 }
