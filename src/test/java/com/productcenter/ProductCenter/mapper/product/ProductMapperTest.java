@@ -18,6 +18,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,14 +31,26 @@ public class ProductMapperTest {
     @MockBean
     private ProductService productService;
 
+    @MockBean
     private ProductMapper productMapper;
 
     @Test
     public void deveRetornarUmDto() {
         Product product = buildProduct(null);
         Mockito.when(productMapper.map(product)).thenReturn(buildProductDTO(10L));
-        ProductDTO productDTO = productMapper.map(product);
-        Assert.assertThat(productDTO.getId(), Matchers.equalTo(10L));
+        ProductDTO result = productMapper.map(product);
+        Assert.assertThat(result.getId(), Matchers.equalTo(10L));
+    }
+
+    @Test
+    public void deveRetornarUmaListaDto() {
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            products.add(buildProduct(null));
+        }
+        Mockito.when(productMapper.map(products)).thenReturn(productMapper.map(products));
+        List<ProductDTO> result = productMapper.map(products);
+        Assert.assertThat(result, Matchers.equalTo(productMapper.map(products)));
     }
 
 
