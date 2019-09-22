@@ -57,18 +57,6 @@ public class ProductTest {
         Assert.assertThat(result, Matchers.equalTo(products));
     }
 
-    //@Test
-    //public void deveFiltrarListaPeloId(){
-    //    List<Product> products = new ArrayList<>();
-    //    for (int i = 0; i < 3; i++) {
-    //        products.add(buildProduto(null));
-    //    }
-    //
-    //
-    //
-//
-    //}
-
     private Product buildProduto(Long id) {
         return Product.builder()
                 .id(id)
@@ -79,10 +67,4 @@ public class ProductTest {
                 .build();
     }
 
-    //private List<Product> buildList(List<Product> products){
-    //    for (int i = 0; i < 3; i++) {
-    //        products.add(buildProduto(null));
-    //    }
-    //    return products;
-    //}
 }

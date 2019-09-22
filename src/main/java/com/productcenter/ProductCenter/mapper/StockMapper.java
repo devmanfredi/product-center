@@ -12,15 +12,13 @@ import java.util.List;
 public interface StockMapper {
 
     @Mappings({
-            @Mapping(source = "id.product.id", target = "productId"),
-            @Mapping(source = "id", target = "stockId"),
-            @Mapping(source = "createdAt", target = "createdAt", dateFormat = "yyyy-MM-dd HH:mm"),
+            @Mapping(source = "id", target = "id"),
             @Mapping(source = "quantity", target = "quantity"),
-            @Mapping(source = "value", target = "value")
+            @Mapping(source = "id.product.id", target = "product.id")
     })
     StockDTO map(Stock stock);
 
-    List<StockDTO> map(List<Stock> stocks);
+    List<StockDTO> mapList(List<Stock> stocks);
 
 
 }
