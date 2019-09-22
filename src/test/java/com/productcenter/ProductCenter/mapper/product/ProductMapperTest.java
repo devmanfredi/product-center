@@ -6,7 +6,6 @@ import com.productcenter.ProductCenter.entity.Product;
 import com.productcenter.ProductCenter.entity.Stock;
 import com.productcenter.ProductCenter.mapper.ProductMapper;
 import com.productcenter.ProductCenter.repository.ProductRepository;
-import com.productcenter.ProductCenter.service.impl.ProductService;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,9 +26,6 @@ public class ProductMapperTest {
 
     @MockBean
     private ProductRepository productRepository;
-
-    @MockBean
-    private ProductService productService;
 
     @MockBean
     private ProductMapper productMapper;
