@@ -5,7 +5,6 @@ import com.productcenter.ProductCenter.dto.ProductDTO;
 import com.productcenter.ProductCenter.entity.Product;
 import com.productcenter.ProductCenter.entity.Stock;
 import com.productcenter.ProductCenter.mapper.ProductMapper;
-import com.productcenter.ProductCenter.repository.ProductRepository;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,9 +22,6 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductMapperTest {
-
-    @MockBean
-    private ProductRepository productRepository;
 
     @MockBean
     private ProductMapper productMapper;

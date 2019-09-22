@@ -5,7 +5,6 @@ import com.productcenter.ProductCenter.dto.StockDTO;
 import com.productcenter.ProductCenter.entity.Product;
 import com.productcenter.ProductCenter.entity.Stock;
 import com.productcenter.ProductCenter.mapper.StockMapper;
-import com.productcenter.ProductCenter.repository.StockRepository;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,9 +21,6 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StockMapperTest {
-
-    @MockBean
-    private StockRepository stockRepository;
 
     @MockBean
     private StockMapper stockMapper;
