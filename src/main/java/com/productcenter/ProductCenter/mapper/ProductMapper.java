@@ -12,11 +12,10 @@ import java.util.List;
 public interface ProductMapper {
 
     @Mappings({
-            @Mapping(source = "id.stock.id", target = "stockId"),
             @Mapping(source = "id", target = "id"),
-            @Mapping(source = "createdAt", target = "createdAt", dateFormat = "yyyy-MM-dd HH:mm"),
             @Mapping(source = "name", target = "name"),
-            @Mapping(source = "value", target = "value")
+            @Mapping(source = "value", target = "value"),
+            @Mapping(source = "id.stock.id", target = "stockId")
     })
     ProductDTO map(Product product);
 

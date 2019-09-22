@@ -34,20 +34,15 @@ public class ProductTest {
     public void dadoUmProdutoQuandoForCompletoEntaoSalvar() {
         Product produto = buildProduto(null);
         Mockito.when(productRepository.save(produto)).thenReturn(buildProduto(10L));
-
         Product result = productService.save(produto);
-
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
-
     }
 
     @Test
     public void dadoIdRetornarUmProduto() {
         Product product = buildProduto(null);
         Mockito.when(productRepository.findById(product.getId())).thenReturn(Optional.of(buildProduto(10L)));
-
         Product result = productService.findById(product.getId());
-
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
     }
 
@@ -57,9 +52,9 @@ public class ProductTest {
         for (int i = 0; i < 3; i++) {
             products.add(buildProduto(null));
         }
-
         Mockito.when(productRepository.findAll()).thenReturn(products);
-
+        List<Product> result = productService.findAll();
+        Assert.assertThat(result, Matchers.equalTo(products));
     }
 
     //@Test

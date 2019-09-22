@@ -55,6 +55,8 @@ public class StockControllerTest {
             stocks.add(stockBuild(null));
         }
         Mockito.when(stockController.findAll()).thenReturn(stocks);
+        List<Stock> result = stockController.findAll();
+        Assert.assertThat(result, Matchers.equalTo(stocks));
     }
 
     private Stock stockBuild(Long id) {

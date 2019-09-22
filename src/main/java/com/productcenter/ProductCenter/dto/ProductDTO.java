@@ -1,5 +1,6 @@
 package com.productcenter.ProductCenter.dto;
 
+import com.productcenter.ProductCenter.entity.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,5 @@ public class ProductDTO {
     private Long id;
     private String name;
     private BigDecimal value;
-    private String createdAt;
-
+    private Stock stock;
 }

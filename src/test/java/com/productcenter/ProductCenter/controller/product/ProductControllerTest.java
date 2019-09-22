@@ -56,6 +56,8 @@ public class ProductControllerTest {
             products.add(buildProduto(null));
         }
         Mockito.when(productController.findAll()).thenReturn(products);
+        List<Product> result = productController.findAll();
+        Assert.assertThat(result, Matchers.equalTo(products));
     }
 
     private Product buildProduto(Long id) {

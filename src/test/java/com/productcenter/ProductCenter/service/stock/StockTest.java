@@ -33,20 +33,15 @@ public class StockTest {
     public void dadoUmStockQuandoForCompletoEntaoSalvar() {
         Stock stock = buildStock(null);
         Mockito.when(stockRepository.save(stock)).thenReturn(buildStock(10L));
-
         Stock result = stockService.save(stock);
-
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
-
     }
 
     @Test
     public void dadoIdRetornarUmStock() {
         Stock stock = buildStock(null);
         Mockito.when(stockRepository.findById(stock.getId())).thenReturn(Optional.of(buildStock(10L)));
-
         Stock result = stockService.findById(stock.getId());
-
         Assert.assertThat(result.getId(), Matchers.equalTo(10L));
     }
 
@@ -56,9 +51,9 @@ public class StockTest {
         for (int i = 0; i < 3; i++) {
             stocks.add(buildStock(null));
         }
-
         Mockito.when(stockRepository.findAll()).thenReturn(stocks);
-
+        List<Stock> result = stockService.findAll();
+        Assert.assertThat(result, Matchers.equalTo(stocks));
     }
 
     private Stock buildStock(Long id) {
