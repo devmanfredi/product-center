@@ -48,9 +48,14 @@ public class ProductMapperTest {
         for (int i = 0; i < 3; i++) {
             products.add(buildProduct(null));
         }
-        Mockito.when(productMapper.map(products)).thenReturn(productMapper.map(products));
-        List<ProductDTO> result = productMapper.map(products);
-        Assert.assertThat(result, Matchers.equalTo(productMapper.map(products)));
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            productDTOList.add(buildProductDTO(null));
+        }
+
+        Mockito.when(productMapper.mapList(products)).thenReturn(productDTOList);
+        List<ProductDTO> result = productMapper.mapList(products);
+        Assert.assertThat(result, Matchers.equalTo(productDTOList));
     }
 
 

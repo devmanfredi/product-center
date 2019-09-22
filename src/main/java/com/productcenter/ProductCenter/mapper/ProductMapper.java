@@ -19,7 +19,7 @@ public interface ProductMapper {
     })
     ProductDTO map(Product product);
 
-    List<ProductDTO> map(List<Product> products);
+    List<ProductDTO> mapList(List<Product> products);
 
 
 }
