@@ -14,7 +14,7 @@ public interface StockMapper {
     @Mappings({
             @Mapping(source = "id", target = "id"),
             @Mapping(source = "quantity", target = "quantity"),
-            @Mapping(source = "id.product.id", target = "product.id")
+            @Mapping(source = "product.id", target = "product.id")
     })
     StockDTO map(Stock stock);
 
